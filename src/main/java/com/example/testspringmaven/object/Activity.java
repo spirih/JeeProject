@@ -1,5 +1,8 @@
 package com.example.testspringmaven.object;
 
+import com.example.testspringmaven.persistant.ActivitiesEntity;
+import com.example.testspringmaven.repository.ActivitiesRepository;
+
 public class Activity {
     private String name;
     private String description;
@@ -96,5 +99,9 @@ public class Activity {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public ActivitiesEntity generateRepository() {
+        return new ActivitiesEntity(name,description,discipline,pathologies,url,lat,lng,address,-1);
     }
 }

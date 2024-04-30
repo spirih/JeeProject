@@ -9,4 +9,5 @@ public interface ActivitiesRepository extends JpaRepository<ActivitiesEntity, Lo
     /**
     ArrayList<ActivitiesEntity> findByKey(String name);
     void noteActivity(int idActivity, int value);**/
+    int countAllByName();
 }

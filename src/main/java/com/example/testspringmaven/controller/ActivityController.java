@@ -1,9 +1,11 @@
 package com.example.testspringmaven.controller;
 
+import com.example.testspringmaven.object.Activity;
 import com.example.testspringmaven.persistant.ActivitiesEntity;
 import com.example.testspringmaven.repository.ActivitiesRepository;
 import com.example.testspringmaven.repository.GroupRepository;
 
+import com.example.testspringmaven.utilitary.ActivityReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,6 +45,13 @@ public class ActivityController {
             //activityRepository.noteActivity(id,value);
             model.addAttribute("id",id);
             model.addAttribute("noe",value);
+        }
+    }
+    @GetMapping(path = "/")
+    public void checkData( ){
+        if(activityRepository.countAllByName() < 1){
+            ArrayList<ActivitiesEntity> list = ActivityReader.analyseString("");
+            activityRepository.saveAll(list);
         }
     }
 
