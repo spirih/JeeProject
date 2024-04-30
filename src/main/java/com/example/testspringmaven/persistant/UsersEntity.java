@@ -1,11 +1,11 @@
 package com.example.testspringmaven.persistant;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
 
 @Entity
 @Table(name = "users", schema = "payaya")
 public class UsersEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "nickname", nullable = false, length = 256)
     private String nickname;
@@ -60,5 +60,13 @@ public class UsersEntity {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + role;
         return result;
+    }
+
+    public UsersEntity(String nickname, String password) {
+        this.nickname = nickname;
+        this.password = password;
+    }
+
+    public UsersEntity() {
     }
 }

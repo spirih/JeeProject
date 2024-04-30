@@ -5,7 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.ArrayList;
 
-public interface ActivityRepository extends JpaRepository<ActivitiesEntity, Long> {
+public interface ActivitiesRepository extends JpaRepository<ActivitiesEntity, Long> {
+    /**
     ArrayList<ActivitiesEntity> findByKey(String name);
-    void noteActivity(int idActivity, int value);
+    void noteActivity(int idActivity, int value);**/
 }

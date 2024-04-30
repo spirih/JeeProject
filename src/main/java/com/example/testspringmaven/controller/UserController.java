@@ -16,18 +16,18 @@ public class UserController {
     @GetMapping(path = "/inscription")
     public boolean inscription(String nickname, String password) throws NoSuchAlgorithmException {
         password = Hasher.hashing(password);
-        boolean succes = userRepository.inscrire(nickname,password);
+        boolean succes = true;//userRepository.inscrire(nickname,password);
         return succes;
     }
     @GetMapping(path = "/connection")
     public boolean connection(String nickname, String password) throws NoSuchAlgorithmException {
         password = Hasher.hashing(password);
-        boolean succes = userRepository.connect(nickname,password);
+        boolean succes = true;//userRepository.connect(nickname,password);
         return succes;
     }
     @GetMapping(path = "/deconnection")
     public void deconnection() throws NoSuchAlgorithmException {
-        userRepository.deconnect();
+       // userRepository.deconnect();
     }
 
 }

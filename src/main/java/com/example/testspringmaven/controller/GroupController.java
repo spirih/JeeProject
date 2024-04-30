@@ -18,15 +18,15 @@ public class GroupController {
 
     @GetMapping(path = "/groups")
     public void activities(Model model){
-        ArrayList<GroupactivitiesEntity> list= groupRepository.getAll();
-        model.addAttribute("groups",list);
+        //ArrayList<GroupactivitiesEntity> list= groupRepository.getAll();
+        //model.addAttribute("groups",list);
     }
 
     @GetMapping(path = "/createGroup")
     public void choseActivity(Model model, @RequestParam(name="group", defaultValue="") String group ){
         if(group != null){
             if(!group.isEmpty()){
-                GroupactivitiesEntity gr = groupRepository.createGroupe(group);
+                //GroupactivitiesEntity gr = groupRepository.createGroupe(group);
 
             }
         }

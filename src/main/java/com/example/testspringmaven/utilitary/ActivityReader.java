@@ -19,6 +19,7 @@ public class ActivityReader {
             list.add(activityAnalyzer(jso));
         }
         return list;
+
     }
     static Activity activityAnalyzer(JSONObject jso){
         Activity act = new Activity();
