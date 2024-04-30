@@ -3,7 +3,7 @@ package com.example.testspringmaven.persistant;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "activities", schema = "payaya")
+@Table(name = "activities", schema = "payaya", catalog = "")
 
 public class ActivitiesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +34,9 @@ public class ActivitiesEntity {
     @Basic
     @Column(name = "address", nullable = false, length = -1)
     private String address;
+    @Basic
+    @Column(name = "note", nullable = false)
+    private int note;
 
     public int getId() {
         return id;
@@ -143,5 +146,13 @@ public class ActivitiesEntity {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (address != null ? address.hashCode() : 0);
         return result;
+    }
+
+    public int getNote() {
+        return note;
+    }
+
+    public void setNote(int note) {
+        this.note = note;
     }
 }
