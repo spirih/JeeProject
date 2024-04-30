@@ -1,8 +1,9 @@
-package com.example.testspringmaven.object;
+package com.example.testspringmaven.utilitary;
 
 
 
 
+import com.example.testspringmaven.object.Activity;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

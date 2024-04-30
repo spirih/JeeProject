@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class Hasher {
     Hasher(){}
-    public String hashing(String password) throws NoSuchAlgorithmException {
+    public static String hashing(String password) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         byte[] b = md.digest(password.getBytes(StandardCharsets.UTF_8));
         BigInteger number = new BigInteger(1, b);
