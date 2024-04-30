@@ -4,28 +4,20 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users", schema = "payaya")
+@NamedQueries({
+        @NamedQuery(name="users.finByName", query="SELECT e FROM users e WHERE e.name=:name")
+})
 public class UsersEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
-    private int id;
-    @Basic
-    @Column(name = "nickname")
+    @Column(name = "nickname", nullable = false, length = 256)
     private String nickname;
     @Basic
-    @Column(name = "password")
+    @Column(name = "password", nullable = false, length = 256)
     private String password;
     @Basic
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     private int role;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNickname() {
         return nickname;
@@ -58,7 +50,6 @@ public class UsersEntity {
 
         UsersEntity that = (UsersEntity) o;
 
-        if (id != that.id) return false;
         if (role != that.role) return false;
         if (nickname != null ? !nickname.equals(that.nickname) : that.nickname != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
@@ -68,8 +59,7 @@ public class UsersEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
+        int result = nickname != null ? nickname.hashCode() : 0;
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + role;
         return result;
