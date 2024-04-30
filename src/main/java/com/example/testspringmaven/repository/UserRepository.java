@@ -5,4 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<UsersEntity, Long> {
     boolean inscrire(String nickname, String password);
+
+    boolean connect(String nickname, String password);
+
+    void deconnect();
 }

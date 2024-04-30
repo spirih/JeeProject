@@ -27,6 +27,7 @@ public class GroupController {
         if(group != null){
             if(!group.isEmpty()){
                 GroupactivitiesEntity gr = groupRepository.createGroupe(group);
+
             }
         }
     }
