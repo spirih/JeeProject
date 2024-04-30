@@ -3,10 +3,7 @@ package com.example.testspringmaven.persistant;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users", schema = "payaya", catalog = "")
-@NamedQueries({
-        @NamedQuery(name="users.finByName", query="SELECT e FROM users e WHERE e.name=:name")
-})
+@Table(name = "users", schema = "payaya")
 public class UsersEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

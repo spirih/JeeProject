@@ -1,9 +1,6 @@
 package com.example.testspringmaven.persistant;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "groupandactivities", schema = "payaya", catalog = "")
@@ -14,6 +11,8 @@ public class GroupandactivitiesEntity {
     @Basic
     @Column(name = "idActivity", nullable = false)
     private int idActivity;
+    @Id
+    private Long id;
 
     public int getIdGroup() {
         return idGroup;
@@ -49,5 +48,13 @@ public class GroupandactivitiesEntity {
         int result = idGroup;
         result = 31 * result + idActivity;
         return result;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

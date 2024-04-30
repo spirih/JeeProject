@@ -3,7 +3,7 @@ package com.example.testspringmaven.persistant;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "groupactivities", schema = "payaya", catalog = "")
+@Table(name = "groupactivities", schema = "payaya")
 public class GroupactivitiesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
