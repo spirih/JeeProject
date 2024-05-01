@@ -19,11 +19,13 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping(path = "/sub")
-    public String subscribe(String nickname, String password) throws NoSuchAlgorithmException {
+    public String subscribe(@RequestParam(value = "nickname")String nickname, @RequestParam(value = "password")String password) throws NoSuchAlgorithmException {
         boolean value = canSub(nickname, password);
-        if(value){
+        if(!value){
+            System.out.println("account creation failed");
             return "activityPage";
         }
+        System.out.println("account creation successed");
         return "inscription";
     }
     @GetMapping(path = "/inscription")

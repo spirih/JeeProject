@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -69,6 +70,16 @@ public class ActivityController {
     }
     @GetMapping(path = "/")
     public String checkData( ) throws FileNotFoundException {
+        if(activityRepository.findAll().size() < 1){
+            ArrayList<ActivitiesEntity> list = ActivityReader.analyseString("sportsantecvl.json");
+            activityRepository.saveAll(list);
+        }
+        System.out.println("hello, I'm here to tell that it worked until /");
+
+        return "redirect:/connection";
+    }
+    @PostMapping(path = "/")
+    public String checkDataPost( ) throws FileNotFoundException {
         if(activityRepository.findAll().size() < 1){
             ArrayList<ActivitiesEntity> list = ActivityReader.analyseString("sportsantecvl.json");
             activityRepository.saveAll(list);
