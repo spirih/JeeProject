@@ -2,6 +2,7 @@ package com.example.testspringmaven.controller;
 
 import com.example.testspringmaven.persistant.UsersEntity;
 import com.example.testspringmaven.repository.UserRepository;
+import com.example.testspringmaven.utilitary.Common;
 import com.example.testspringmaven.utilitary.Hasher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,10 +24,10 @@ public class UserController {
         boolean value = canSub(nickname, password);
         if(!value){
             System.out.println("account creation failed");
-            return "activityPage";
+            return "inscription";
         }
         System.out.println("account creation successed");
-        return "inscription";
+        return "activityPage";
     }
     @GetMapping(path = "/inscription")
     public String inscription(){
@@ -35,11 +36,13 @@ public class UserController {
 
     private boolean canSub(String nickname, String password) throws NoSuchAlgorithmException {
         password = Hasher.hashing(password);
-        if (userRepository.findByNickname(nickname).size() < 1){
+        if (userRepository.findByNickname(nickname).size() > 0){
+            System.out.println("Name already use");
             return false;
         }
         UsersEntity users = new UsersEntity(nickname, password);
         userRepository.save(users);
+        setUser(nickname);
         return true;
     }
 
@@ -51,11 +54,12 @@ public class UserController {
     public String connect(@RequestParam(value = "nickname")String nickname, @RequestParam(value = "password")String password) throws NoSuchAlgorithmException {
         System.out.println("App survived long enought to see a tentative of connection");
         boolean can = canConnect(nickname, password);
-        if(can){
+        if(!can){
             System.out.println("failed connection");
-            return "main";
+            return "connection";
         }
-        return "connection";
+        setUser(nickname);
+        return "activityPage";
     }
 
     private boolean canConnect(String nickname, String password) throws NoSuchAlgorithmException {
@@ -70,6 +74,10 @@ public class UserController {
     @GetMapping(path = "/deconnection")
     public void deconnection() throws NoSuchAlgorithmException {
        // userRepository.deconnect();
+    }
+    private void setUser(String nickname){
+        UsersEntity usersEntity = userRepository.getUsersEntityByNickname(nickname);
+        Common.setUsers(usersEntity);
     }
 
 }

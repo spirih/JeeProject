@@ -8,4 +8,5 @@ import java.util.ArrayList;
 
 public interface UserRepository extends JpaRepository<UsersEntity, Long> {
    ArrayList<UsersEntity>findByNickname(String name);
+   UsersEntity getUsersEntityByNickname(String nickname);
 }
