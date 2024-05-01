@@ -1,20 +1,20 @@
 <!doctype html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="utf-8" />
     <title>Inscription</title>
 </head>
 <body>
     <h1>Inscription</h1>
-    <form action = "/" method="post">
+    <form action = "/sub" method="post">
         <label for="nickname">Pseudo:</label>
-        <input type = "text" id = "nickname" required minlength = "1" size = "15"/>
+        <input type = "text" id = "nickname" name = "nickname" required minlength = "1" size = "15"/>
         <br>
         <label for="password">Password:</label>
-        <input type = "password" id = "password" required minlength = "1" size = 15/>
+        <input type = "password" id = "password" name = "password" required minlength = "1" size = 15/>
         <br>
         <label for="confirmPassword">confirm the password:</label>
-        <input type = "password" id = "confirmPassword" required minlength = "1" size = 15/>
+        <input type = "password" id = "confirmPassword" name ="confirmPassword" required minlength = "1" size = 15/>
         <br>
         <input type = "submit" id = "submit" text = "confirmer" value =  "Submit"/>
     </form>

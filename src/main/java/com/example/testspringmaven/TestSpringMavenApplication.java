@@ -1,11 +1,10 @@
 package com.example.testspringmaven;
 
-import com.example.testspringmaven.persistant.GroupactivitiesEntity;
 import com.example.testspringmaven.persistant.UsersEntity;
-import com.example.testspringmaven.repository.GroupAndActivitiesRepository;
 import com.example.testspringmaven.repository.GroupRepository;
 import com.example.testspringmaven.repository.UserRepository;
 import com.example.testspringmaven.utilitary.Hasher;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,7 +23,6 @@ public class TestSpringMavenApplication {
     @Autowired
     UserRepository userRepository;
     public static void main(String[] args) {
-
         SpringApplication.run(TestSpringMavenApplication.class, args);
     }
 
@@ -36,7 +34,5 @@ public class TestSpringMavenApplication {
         userRepository.save(users);
         return String.format("Hello %s!", name);
     }
-
-
 }
 

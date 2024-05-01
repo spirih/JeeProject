@@ -1,6 +1,9 @@
 package com.example.testspringmaven.persistant;
 
+import com.example.testspringmaven.repository.ActivitiesRepository;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "activities", schema = "payaya")
@@ -21,10 +24,10 @@ public class ActivitiesEntity {
     private String discipline;
     @Basic
     @Column(name = "pathologie", nullable = false)
-    private int pathologie;
+    private String pathologie;
     @Basic
     @Column(name = "url", nullable = false)
-    private int url;
+    private String url;
     @Basic
     @Column(name = "lat", nullable = false, precision = 0)
     private double lat;
@@ -34,9 +37,23 @@ public class ActivitiesEntity {
     @Basic
     @Column(name = "address", nullable = false, length = -1)
     private String address;
-    @Basic
-    @Column(name = "note", nullable = false)
-    private int note;
+
+    private float note = 0;
+
+
+    public ActivitiesEntity(String name, String description, String discipline, String pathologie, String url, double lat, double lng, String address) {
+        this.name = name;
+        this.description = description;
+        this.discipline = discipline;
+        this.pathologie = pathologie;
+        this.url = url;
+        this.lat = lat;
+        this.lng = lng;
+        this.address = address;
+    }
+
+    public ActivitiesEntity() {
+    }
 
     public int getId() {
         return id;
@@ -70,19 +87,19 @@ public class ActivitiesEntity {
         this.discipline = discipline;
     }
 
-    public int getPathologie() {
+    public String getPathologie() {
         return pathologie;
     }
 
-    public void setPathologie(int pathologie) {
+    public void setPathologie(String pathologie) {
         this.pathologie = pathologie;
     }
 
-    public int getUrl() {
+    public String getUrl() {
         return url;
     }
 
-    public void setUrl(int url) {
+    public void setUrl(String url) {
         this.url = url;
     }
 
@@ -138,8 +155,8 @@ public class ActivitiesEntity {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (discipline != null ? discipline.hashCode() : 0);
-        result = 31 * result + pathologie;
-        result = 31 * result + url;
+        result = 31 * result + (pathologie != null ? pathologie.hashCode() : 0);
+        result = 31 * result + (url != null ? url.hashCode() : 0);
         temp = Double.doubleToLongBits(lat);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(lng);
@@ -148,11 +165,17 @@ public class ActivitiesEntity {
         return result;
     }
 
-    public int getNote() {
+    public float getNote() {
         return note;
     }
 
-    public void setNote(int note) {
+    public void setNote(float note) {
         this.note = note;
+    }
+
+
+    public float tellNote(){
+        float note = 0;
+        return note;
     }
 }

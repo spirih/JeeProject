@@ -3,7 +3,7 @@ package com.example.testspringmaven.persistant;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "groupandactivities", schema = "payaya", catalog = "")
+@Table(name = "groupandactivities", schema = "payaya")
 public class GroupandactivitiesEntity {
     @Basic
     @Column(name = "idGroup", nullable = false)
@@ -11,6 +11,11 @@ public class GroupandactivitiesEntity {
     @Basic
     @Column(name = "idActivity", nullable = false)
     private int idActivity;
+
+    @Basic
+    @Column(name = "note")
+    private int note;
+
     @Id
     private Long id;
 
@@ -39,6 +44,7 @@ public class GroupandactivitiesEntity {
 
         if (idGroup != that.idGroup) return false;
         if (idActivity != that.idActivity) return false;
+        if (note != that.note) return false;
 
         return true;
     }
@@ -56,5 +62,13 @@ public class GroupandactivitiesEntity {
 
     public Long getId() {
         return id;
+    }
+
+    public int getNote() {
+        return note;
+    }
+
+    public void setNote(int note) {
+        this.note = note;
     }
 }
