@@ -1,6 +1,9 @@
 package com.example.testspringmaven.persistant;
 
+import com.example.testspringmaven.repository.ActivitiesRepository;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "activities", schema = "payaya")
@@ -34,11 +37,11 @@ public class ActivitiesEntity {
     @Basic
     @Column(name = "address", nullable = false, length = -1)
     private String address;
-    @Basic
-    @Column(name = "note", nullable = false)
-    private int note;
 
-    public ActivitiesEntity(String name, String description, String discipline, String pathologie, String url, double lat, double lng, String address, int note) {
+    private float note = 0;
+
+
+    public ActivitiesEntity(String name, String description, String discipline, String pathologie, String url, double lat, double lng, String address) {
         this.name = name;
         this.description = description;
         this.discipline = discipline;
@@ -47,7 +50,6 @@ public class ActivitiesEntity {
         this.lat = lat;
         this.lng = lng;
         this.address = address;
-        this.note = note;
     }
 
     public ActivitiesEntity() {
@@ -163,12 +165,17 @@ public class ActivitiesEntity {
         return result;
     }
 
-    public int getNote() {
+    public float getNote() {
         return note;
     }
 
-    public void setNote(int note) {
+    public void setNote(float note) {
         this.note = note;
     }
 
+
+    public float tellNote(){
+        float note = 0;
+        return note;
+    }
 }

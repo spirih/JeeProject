@@ -102,6 +102,7 @@ public class Activity {
     }
 
     public ActivitiesEntity generateRepository() {
-        return new ActivitiesEntity(name,description,discipline,pathologies,url,lat,lng,address,-1);
+        return new ActivitiesEntity(name,description,discipline,pathologies,url,lat,lng,address);
     }
+
 }
