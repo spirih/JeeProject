@@ -1,5 +1,6 @@
 package com.example.testspringmaven.controller;
 
+import com.example.testspringmaven.object.Activity;
 import com.example.testspringmaven.persistant.ActivitiesEntity;
 import com.example.testspringmaven.persistant.GroupactivitiesEntity;
 import com.example.testspringmaven.persistant.GroupandactivitiesEntity;
@@ -27,16 +28,37 @@ public class GroupController {
     private GroupAndActivitiesRepository gral;
 
     @GetMapping(path = "/groups")
-    public void groups(Model model){
-        //ArrayList<GroupactivitiesEntity> list= groupRepository.getAll();
-        //model.addAttribute("groups",list);
+    public String groups(Model model){
+        ArrayList<GroupactivitiesEntity> list= groupRepository.getAll();
+        model.addAttribute("groups2",list);
+        return "groups";
     }
-    @GetMapping(path = "/group")
-    public String group(Model model){
-        int group = (int) model.getAttribute("group");
-        return "lol";
+    @GetMapping(path = "/group" )
+    public String group(Model model,@RequestParam(name="id", defaultValue="-1") int id){
+        if(id < 0){
+            id = (int) model.getAttribute("group");
+        }
+        GroupactivitiesEntity grae = groupRepository.findById(id);
+        model.addAttribute("group",grae);
+        ArrayList<GroupandactivitiesEntity> graae = gral.getGroupandactivitiesEntitiesByIdGroup(id);
+        ArrayList<Activity> activities = new ArrayList<>();
+        for(GroupandactivitiesEntity g : graae){
+            activities.add(generateActivity(g));
+        }
+        model.addAttribute("activities",activities);
+
+        return "group";
     }
 
+    public Activity generateActivity(GroupandactivitiesEntity whole){
+        ActivitiesEntity entity = activityRepository.findById(whole.getIdActivity());
+        Activity activity = new Activity();
+        activity.setId(entity.getId());
+        activity.setName(entity.getName());
+        activity.setNote(entity.getNote());
+        activity.setGroupAndActionID(whole.getId());
+        return activity;
+    }
 
     @GetMapping(path = "/createGroup")
     public String choseActivity(Model model,@RequestParam(name="nomGroup") String group , @RequestParam(name="id") int id){

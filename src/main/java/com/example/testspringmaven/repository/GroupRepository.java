@@ -11,7 +11,7 @@ public interface GroupRepository extends JpaRepository<GroupactivitiesEntity, Lo
     /**
     void addActivityToGroup(int idGroup, int idActivity);**/
 
-    @Query("SELECT b from GroupandactivitiesEntity b")
+    @Query("SELECT b from GroupactivitiesEntity b")
     ArrayList<GroupactivitiesEntity> getAll();
     /**
 

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <tr th:each="group : ${groups2}">
+            <th th:text="${group.getId()}"></th>
+            <td th:text="${group.getName()}"></td>
+            <th>
+                <a th:href="@{'/group?id=' + ${group.getId()}}">
+                    <button th:action="@{'/group?id=' + ${group.getId()}}">Aller voir</button>
+                </a>
+            </th>
+        </tr>
+    </table>
+</body>
+</html>
