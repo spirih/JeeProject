@@ -19,4 +19,5 @@ public interface GroupRepository extends JpaRepository<GroupactivitiesEntity, Lo
     /**
     void insertGroupactivities(String group);**/
     GroupactivitiesEntity findByName(String name);
+    GroupactivitiesEntity findById(int id);
 }

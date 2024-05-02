@@ -7,5 +7,5 @@ import java.util.ArrayList;
 
 public interface GroupAndActivitiesRepository extends JpaRepository<GroupandactivitiesEntity, Long> {
     ArrayList<GroupandactivitiesEntity> getGroupandactivitiesEntitiesByIdActivity(int idActivity);
-
+    ArrayList<GroupandactivitiesEntity> getGroupandactivitiesEntitiesByIdGroup(int id);
 }

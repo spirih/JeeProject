@@ -2,7 +2,9 @@ package com.example.testspringmaven.controller;
 
 import com.example.testspringmaven.persistant.ActivitiesEntity;
 import com.example.testspringmaven.persistant.GroupactivitiesEntity;
+import com.example.testspringmaven.persistant.GroupandactivitiesEntity;
 import com.example.testspringmaven.repository.ActivitiesRepository;
+import com.example.testspringmaven.repository.GroupAndActivitiesRepository;
 import com.example.testspringmaven.repository.GroupRepository;
 import com.example.testspringmaven.utilitary.Common;
 
@@ -12,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+
 
 @Controller
 public class GroupController {
@@ -19,11 +23,18 @@ public class GroupController {
     GroupRepository groupRepository;
     @Autowired
     private ActivitiesRepository activityRepository;
+    @Autowired
+    private GroupAndActivitiesRepository gral;
 
     @GetMapping(path = "/groups")
-    public void activities(Model model){
+    public void groups(Model model){
         //ArrayList<GroupactivitiesEntity> list= groupRepository.getAll();
         //model.addAttribute("groups",list);
+    }
+    @GetMapping(path = "/group")
+    public String group(Model model){
+        int group = (int) model.getAttribute("group");
+        return "lol";
     }
 
 

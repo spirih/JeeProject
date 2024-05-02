@@ -33,15 +33,14 @@
 
 <form action = "/add" method="get">
     <select name="choice" id = "choiceGroup" >
-        <option value="first">First Value</option>
         <option
                 th:each="group : ${groups}"
                 th:text="${group.name}"
                 th:value="${group.id}"
-
         >
     </select>
     <br>
+    <input type="hidden" name="activity" th:value="${activity.getId()}">
     <input type = "submit" id = "submitGroup" text = "Ajouter au groupe" value =  "Submit"/>
 </form>
 <br>

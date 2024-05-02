@@ -2,6 +2,7 @@ package com.example.testspringmaven.controller;
 
 import com.example.testspringmaven.object.Activity;
 import com.example.testspringmaven.persistant.ActivitiesEntity;
+import com.example.testspringmaven.persistant.GroupactivitiesEntity;
 import com.example.testspringmaven.persistant.GroupandactivitiesEntity;
 import com.example.testspringmaven.repository.ActivitiesRepository;
 import com.example.testspringmaven.repository.GroupAndActivitiesRepository;
@@ -110,6 +111,28 @@ public class ActivityController {
         model.addAttribute("groups",groupRepository.findAll());
 
         return "activityPage";
+    }
+    @GetMapping(path = "/add")
+    public String add(Model model, @RequestParam(name="choice") int group,@RequestParam(name="activity") int activity ){
+        GroupandactivitiesEntity ga = new GroupandactivitiesEntity(group,activity);
+        groupAndActivityRepository.save(ga);
+        model.addAttribute("group",group);
+        ArrayList<GroupandactivitiesEntity> list = groupAndActivityRepository.getGroupandactivitiesEntitiesByIdGroup(group);
+        ArrayList<Activity> activities = new ArrayList<>();
+        for(GroupandactivitiesEntity g : list){
+            activities.add(generateActivity(g));
+        }
+        model.addAttribute("activities",activities);
+        return "group";
+    }
+    public Activity generateActivity(GroupandactivitiesEntity whole){
+        ActivitiesEntity entity = activityRepository.findById(whole.getIdActivity());
+        Activity activity = new Activity();
+        activity.setId(entity.getId());
+        activity.setName(entity.getName());
+        activity.setNote(entity.getNote());
+        activity.setGroupAndActionID(whole.getId());
+        return activity;
     }
 
 

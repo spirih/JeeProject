@@ -13,6 +13,10 @@ public class Activity {
     private float lat;
     private float lng;
     private String address;
+    private float note;
+
+    private int groupAndActionID;
+
 
     public Activity() {
     }
@@ -27,6 +31,22 @@ public class Activity {
         this.lat = lat;
         this.lng = lng;
         this.address = address;
+    }
+
+    public int getGroupAndActionID() {
+        return groupAndActionID;
+    }
+
+    public void setGroupAndActionID(int groupAndActionID) {
+        this.groupAndActionID = groupAndActionID;
+    }
+
+    public float getNote() {
+        return note;
+    }
+
+    public void setNote(float note) {
+        this.note = note;
     }
 
     public String getName() {
@@ -104,5 +124,6 @@ public class Activity {
     public ActivitiesEntity generateRepository() {
         return new ActivitiesEntity(name,description,discipline,pathologies,url,lat,lng,address);
     }
+
 
 }

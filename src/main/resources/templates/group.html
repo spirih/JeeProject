@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Group</title>
+</head>
+<body>
+<table>
+  <tr th:each=" activity :${activities}">
+      <td th:text="${activity.getName()}"></td>
+      <td th:text="${activity.getNote()}"></td>
+  </tr>
+</table>
+
+</body>
+</html>
