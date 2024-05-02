@@ -72,7 +72,9 @@ public class UserController {
     }
 
     @GetMapping(path = "/deconnection")
-    public void deconnection() throws NoSuchAlgorithmException {
+    public String deconnection() throws NoSuchAlgorithmException {
+        Common.setUsers(null);
+        return "connection";
        // userRepository.deconnect();
     }
     private void setUser(String nickname){

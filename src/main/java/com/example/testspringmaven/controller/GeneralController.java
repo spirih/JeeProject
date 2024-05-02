@@ -33,4 +33,13 @@ public class GeneralController {
 
         return "redirect:/connection";
     }
+    @GetMapping(path = "/")
+    public String checkData( ) throws FileNotFoundException {
+        if(activityRepository.findAll().size() < 1){
+            ArrayList<ActivitiesEntity> list = ActivityReader.analyseString("sportsantecvl.json");
+            activityRepository.saveAll(list);
+        }
+        System.out.println("hello, I'm here to tell that it worked until /");
+        return "redirect:/connection";
+    }
 }
