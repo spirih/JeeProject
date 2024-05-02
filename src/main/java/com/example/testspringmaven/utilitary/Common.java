@@ -8,8 +8,8 @@ public class Common {
     public static UsersEntity getUsers() {
         return users;
     }
-
     public static void setUsers(UsersEntity users) {
         Common.users = users;
     }
+
 }
