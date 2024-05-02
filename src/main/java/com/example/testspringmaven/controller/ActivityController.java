@@ -43,13 +43,16 @@ public class ActivityController {
 
 
     @GetMapping(path = "/activities")
-    public void activities(Model model2,@RequestParam(name="activitySearch", defaultValue="") String name,@RequestParam(name="filter", defaultValue="") String filter,@RequestParam(name="dir", defaultValue="") String dir){
-        ModelAndView model = new ModelAndView("/activities");
-        Pageable pageable = PageRequest.of(0,10);
+    public void activities(Model model2,@RequestParam(name="page", defaultValue="0") int page,@RequestParam(name="pageSize", defaultValue="10") int pageSize,@RequestParam(name="activitySearch", defaultValue="") String name,@RequestParam(name="filter", defaultValue="") String filter,@RequestParam(name="dir", defaultValue="") String dir){
+        if(page < 0){page = 0;}
+        if(pageSize < 0){pageSize = 0;}
+        Pageable pageable = PageRequest.of(page,pageSize);
+        model2.addAttribute("filter",filter);
+        model2.addAttribute("dir",dir);
         if(dir.equals("asc")){
-            pageable = PageRequest.of(0,10, Sort.by("name").ascending());
+            pageable = PageRequest.of(page,pageSize, Sort.by("name").ascending());
         }else if(dir.equals("dsc")){
-            pageable = PageRequest.of(0,10, Sort.by("name").descending());
+            pageable = PageRequest.of(page,pageSize, Sort.by("name").descending());
         }
         Page<ActivitiesEntity> list;
 
@@ -85,11 +88,11 @@ public class ActivityController {
          System.out.println("hu");
          System.out.println(list.getNumberOfElements());
          System.out.println("hi");
-         model.addObject("activities",list);
          System.out.println(Common.getUsers().getNickname());
-         model.addObject("user", Common.getUsers());
          model2.addAttribute("activities",list.getContent());
          model2.addAttribute("user",Common.getUsers());
+         model2.addAttribute("nbPage",page);
+         model2.addAttribute("sizePage",pageSize);
 
     }
 

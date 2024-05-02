@@ -16,10 +16,24 @@
 <body>
 <h1>Liste des articles</h1>
 <br>
-<h2>Nombre d'activité: </h2>
-<h2 th:text="${activities.size()}"></h2>
+<h3>Pages:</h3>
+<div>
+    <a  th:if="${nbPage} > 0" th:text="${nbPage} " th:href="@{'/activities?filter=' + ${filter}+'&dir='+${dir}+'&page='+${nbPage - 1} + '&pageSize='+${sizePage}}"></a>
+    <a th:text="${nbPage} +1" ></a>
+    <a th:text="${nbPage} + 2 " th:href="@{'/activities?filter=' + ${filter}+'&dir='+${dir}+'&page='+${nbPage+1} + '&pageSize='+${sizePage}}"></a>
+
+</div>
 
 <form action="/activities" method="get">
+    <br>
+    <label>
+        Nombre d'élément par page
+        <input type="number" name="pageSize" th:value="${sizePage}">
+    </label>
+    <br>
+    <label for="activitySearch">
+        Filtre
+    </label>
     <input type="text" id="activitySearch" name="activitySearch"></input>
 
 
@@ -36,17 +50,11 @@
     <label for="dec">décroissant</label>
     <input type="radio" name="dir" id="dec" value="dec">
     <label for="asc">croissant</label>
-    <input type="radio" name="dir" id="asc" value="asc" checked>
+    <input type="radio" name="dir" id="asc" value="asc">
     <br>
     <button type="submit">search</button>
 </form>
 
-<table>
-    <tr th:each="ac : ${activities}">
-        <th th:text="${ac.getName()}"></th>
-        <th>Ok</th>
-    </tr>
-</table>
 <div th:each="ac : ${activities}">
     <div class = "activity">
         <a th:href="@{'/activity?id=' + ${ac.getId()}}" >
