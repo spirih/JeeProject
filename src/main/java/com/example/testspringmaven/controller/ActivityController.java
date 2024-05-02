@@ -87,9 +87,9 @@ public class ActivityController {
         }
     }
     @GetMapping(path = "/noteActivity")
-    public void noteActivity(Model model, @RequestParam(name="id", defaultValue="-1") int id,@RequestParam(name="note", defaultValue="-1") int value ){
-        if(id < 6 && id > -1){
-            //activityRepository.noteActivity(id,value);
+    public void noteActivity(Model model, @RequestParam(name="idIterate", defaultValue="-1") int id,@RequestParam(name="note", defaultValue="-1") int value ){
+
+        if(value < 6 && value > -1 && id > -1){
             model.addAttribute("id",id);
             model.addAttribute("note",value);
         }
@@ -116,7 +116,8 @@ public class ActivityController {
     public String add(Model model, @RequestParam(name="choice") int group,@RequestParam(name="activity") int activity ){
         GroupandactivitiesEntity ga = new GroupandactivitiesEntity(group,activity);
         groupAndActivityRepository.save(ga);
-        model.addAttribute("group",group);
+        GroupactivitiesEntity groupe = groupRepository.findById(group);
+        model.addAttribute("group",groupe);
         ArrayList<GroupandactivitiesEntity> list = groupAndActivityRepository.getGroupandactivitiesEntitiesByIdGroup(group);
         ArrayList<Activity> activities = new ArrayList<>();
         for(GroupandactivitiesEntity g : list){
@@ -133,6 +134,17 @@ public class ActivityController {
         activity.setNote(entity.getNote());
         activity.setGroupAndActionID(whole.getId());
         return activity;
+    }
+    @GetMapping(path = "/iterationActivity")
+    public String iterate(Model model, @RequestParam(name="id") int idGroupAction){
+        GroupandactivitiesEntity graa = groupAndActivityRepository.getGroupandactivitiesEntityById(idGroupAction);
+        GroupactivitiesEntity gra = groupRepository.findById(graa.getIdGroup());
+        ActivitiesEntity activity = activityRepository.findById(graa.getIdActivity());
+        model.addAttribute("activity",activity);
+        model.addAttribute("group",gra);
+        model.addAttribute("iteration",graa);
+
+        return "iterationActivity";
     }
 
 
