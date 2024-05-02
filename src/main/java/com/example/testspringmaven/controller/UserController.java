@@ -27,7 +27,7 @@ public class UserController {
             return "inscription";
         }
         System.out.println("account creation successed");
-        return "activityPage";
+        return "redirect:/activities";
     }
     @GetMapping(path = "/inscription")
     public String inscription(){
@@ -59,7 +59,7 @@ public class UserController {
             return "connection";
         }
         setUser(nickname);
-        return "activityPage";
+        return "redirect:/activities";
     }
 
     private boolean canConnect(String nickname, String password) throws NoSuchAlgorithmException {

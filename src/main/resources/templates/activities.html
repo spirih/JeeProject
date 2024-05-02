@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Activities</title>
+</head>
+<body>
+<h1>Liste des articles</h1>
+<br>
+<h2>Nombre d'activité: </h2>
+<h3 th:text="${user.getNickname()}"></h3>
+<h2 th:text="${activities.size()}"></h2>
+<form method="get" action="/activities">
+    <label for="name"></label>
+    <input type="text" name="name" id = "name">
+    <input type="submit">
+</form>
+<table>
+    <tr th:each="ac : ${activities}">
+        <th th:text="${ac.getName()}"></th>
+        <th>Ok</th>
+    </tr>
+</table>
+</body>
+</html>
