@@ -1,22 +1,43 @@
 <!doctype html>
-<html lang="fr">
+<html>
 <head>
     <meta charset="utf-8" />
     <title>Inscription</title>
 </head>
 <body>
     <h1>Inscription</h1>
-    <form action = "/sub" method="post">
-        <label for="nickname">Pseudo:</label>
-        <input type = "text" id = "nickname" name = "nickname" required minlength = "1" size = "15"/>
+    <form action = "/" method="post">
+        <label for="nickname">Pseudo :</label>
+        <input type = "text" id = "nickname" required minlength = "1" size = "15" autofocus/>
         <br>
-        <label for="password">Password:</label>
-        <input type = "password" id = "password" name = "password" required minlength = "1" size = 15/>
+        <label for="password">Mot de passe :</label>
+        <input type = "password" id = "password" required minlength = "1" size = 15/>
         <br>
-        <label for="confirmPassword">confirm the password:</label>
-        <input type = "password" id = "confirmPassword" name ="confirmPassword" required minlength = "1" size = 15/>
+        <label for="confirmPassword">Confirmé mot de passe:</label>
+        <input type = "password" id = "confirmPassword" required minlength = "1" size = 15/>
+
+
+        <br>
+        <label for="age">Age :</label>
+        <input type = "number" id = "age" required minlength = "1"/>
+        <br>
+        <label for="sexe">Sexe :</label>
+        <select name="sexe" id="sexe">
+            <option value="A" >Ne pas définir</option>
+            <option value="M">Masculin</option>
+            <option value="F">Féminin</option>
+        </select>
+        <br>
+        <label for="pathologie">pathologie :</label>
+        <select name="pathologie" id="pathologie">
+            <option value="none">Aucune pathologie</option>
+        </select>
         <br>
         <input type = "submit" id = "submit" text = "confirmer" value =  "Submit"/>
     </form>
+    <br>
+    <a href="connection.html">
+        <button>Connexion</button>
+    </a>
 </body>
 </html>

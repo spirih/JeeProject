@@ -10,41 +10,68 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body>
-    <h1 id = "title">Title</h1>
+<!--Début page de recherche d'activité-->
+<h1 id = "title">Recherche d'activité</h1>
+<form action="" method="post">
+    <textarea id="activitySearch" name="activitySearch"></textarea>
+
+    <label for="dec">décroissant</label>
+    <input type="radio" name="dir" id="dec" value="dec">
+    <label for="asc">croissant</label>
+    <input type="radio" name="dir" id="asc" value="asc" checked>
+
+    <label for="description">description</label>
+    <input type="radio" name="filtre" id="description" value="description" >
+    <label for="nom">nom</label>
+    <input type="radio" name="filtre" id="nom" value="nom" >
+    <label for="pathologie">pathologie</label>
+    <input type="radio" name="filtre" id="pathologie" value="pathologie" >
+    <button type="submit">search</button>
+</form>
+
+<div id="result" name="result">
+    <h2 id="activityTitle">Titre</h2>
     <p id = "descruption">Description</p>
     <p id = "discipline">Discipline</p>
     <p id = "pathologies">Pathologies</p>
     <p id = "adress">Adresse</p>
-    <div id="map" style=""></div>
-    <script src="map.js" >
-    </script>
-    <h3>Ajouter au groupe</h3>
-    <br>
-    
-    <form action = "/add" method="get">
-        <select name="choice" id = "choice">
-          <option value="first">First Value</option>
-        </select>   
-        <br>
-        <input type = "submit" id = "submit" text = "Ajouter au groupe" value =  "Submit"/>
-    </form>
-    <br>
-    <h3>Créer un groupe</h3>
-    <form action = "/createGroup" method="get">
-        <label for="nameGroup">Nom du groupe:</label>
-        <input type = "text" id = "nameGroup" value = "nameGroup">
-        <input type = "submit" id = "submit" text = "Créer un groupe" value =  "Submit"/>
-    </form>
-    <h3>Noter</h3>
+
+    (zone d'arriver pouir les résultat de la recherche)
+
+</div>
+<!--Fin age de recherche d'activité-->
+
+
+<div id="map" style=""></div>
+<script src="map.js" >
+</script>
+<h3>Ajouter au groupe</h3>
+<br>
+
+<form action = "/add" method="get">
     <select name="choice" id = "choice">
-        <option value="-1"></option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-    </select>   
-    
+        <option value="first">First Value</option>
+    </select>
+    <br>
+    <input type = "submit" id = "submit" text = "Ajouter au groupe" value =  "Submit"/>
+</form>
+<br>
+<h3>Créer un groupe</h3>
+<form action = "/createGroup" method="get">
+    <label for="nameGroup">Nom du groupe:</label>
+    <input type = "text" id = "nameGroup" value = "nameGroup">
+    <input type = "submit" id = "submit" text = "Créer un groupe" value =  "Submit"/>
+</form>
+<h3>Noter</h3>
+<select name="choice" id = "choice">
+    <option value="-1"></option>
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+</select>
+
 </body>
 </html>
