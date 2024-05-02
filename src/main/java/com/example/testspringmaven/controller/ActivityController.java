@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 @Controller
 public class ActivityController {
@@ -41,20 +43,45 @@ public class ActivityController {
 
 
     @GetMapping(path = "/activities")
-    public void activities(Model model2,@RequestParam(name="activitySearch", defaultValue="") String name){
+    public void activities(Model model2,@RequestParam(name="activitySearch", defaultValue="") String name,@RequestParam(name="filter", defaultValue="") String filter,@RequestParam(name="dir", defaultValue="") String dir){
         ModelAndView model = new ModelAndView("/activities");
         Pageable pageable = PageRequest.of(0,10);
+        if(dir.equals("asc")){
+            pageable = PageRequest.of(0,10, Sort.by("name").ascending());
+        }else if(dir.equals("dsc")){
+            pageable = PageRequest.of(0,10, Sort.by("name").descending());
+        }
         Page<ActivitiesEntity> list;
+
         if(name.equals("")){
             list = activityRepository.findAllPage(pageable);
 
         }else{
-            list = activityRepository.findAllLikeNamePageable(name,pageable);
+            if(!filter.equals("")){
+                switch (filter){
+                    case "description":
+                        list = activityRepository.findAllLikeDescriptionPageable(name,pageable);
+                        break;
+                    case "name":
+                        list = activityRepository.findAllLikeNamePageable(name,pageable);
+                        break;
+                    case "pathologie":
+                        list = activityRepository.findAllLikePathologiePageable(name,pageable);
+                        break;
+                    default:
+                        list = activityRepository.findAll(pageable);
+                        break;
+                }
+
+            }else{
+                list = activityRepository.findAll(pageable);
+            }
 
         }
          for(ActivitiesEntity activities : list){
              calculateNote(activities);
          }
+
          System.out.println("hu");
          System.out.println(list.getNumberOfElements());
          System.out.println("hi");

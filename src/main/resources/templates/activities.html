@@ -4,13 +4,13 @@
 >
 <head>
 
-    <link rel="stylesheet" href="map.css">
+    <link rel="stylesheet" href="../static/map.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <meta charset="UTF-8">
     <title>Activities</title>
-    <link rel="stylesheet" href="activity.css">
+    <link rel="stylesheet" href="../static/activity.css">
 
 </head>
 <body>
@@ -24,6 +24,7 @@
 
 
     <br>
+    Option de filtre:
     <label for="description">description</label>
     <input type="radio" name="filtre" id="description" value="description" >
     <label for="name">nom</label>
@@ -31,6 +32,7 @@
     <label for="pathologie">pathologie</label>
     <input type="radio" name="filtre" id="pathologie" value="pathologie" >
     <br>
+    Ordre alphabétique:
     <label for="dec">décroissant</label>
     <input type="radio" name="dir" id="dec" value="dec">
     <label for="asc">croissant</label>
@@ -54,7 +56,7 @@
             <p id = "pathologies" th:text="${ac.getPathologie()}">Pathologies</p>
             <p id = "address" th:text="${ac.getAddress()}">Adresse</p>
             <div id="map" style=""></div>
-            <script src="map.js" >
+            <script src="../static/map.js" >
             </script>
         </a>
     </div>
