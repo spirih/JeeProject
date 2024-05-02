@@ -17,7 +17,13 @@ public class GroupandactivitiesEntity {
     private int note;
 
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+
+    public GroupandactivitiesEntity() {
+
+    }
 
     public int getIdGroup() {
         return idGroup;
@@ -56,11 +62,11 @@ public class GroupandactivitiesEntity {
         return result;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
@@ -71,4 +77,10 @@ public class GroupandactivitiesEntity {
     public void setNote(int note) {
         this.note = note;
     }
+
+    public GroupandactivitiesEntity(int idGroup, int idActivity) {
+        this.idGroup = idGroup;
+        this.idActivity = idActivity;
+    }
+
 }

@@ -16,6 +16,10 @@ public class GroupactivitiesEntity {
     @Column(name = "name", nullable = false, length = -1)
     private String name;
 
+    public GroupactivitiesEntity() {
+
+    }
+
     public int getId() {
         return id;
     }
@@ -60,5 +64,10 @@ public class GroupactivitiesEntity {
         result = 31 * result + (user != null ? user.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    public GroupactivitiesEntity(String user, String name) {
+        this.user = user;
+        this.name = name;
     }
 }

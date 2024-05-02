@@ -20,27 +20,27 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping(path = "/sub")
-    public String subscribe(@RequestParam(value = "nickname")String nickname, @RequestParam(value = "password")String password) throws NoSuchAlgorithmException {
-        boolean value = canSub(nickname, password);
+    public String subscribe(@RequestParam(value = "nickname")String nickname, @RequestParam(value = "password")String password ,@RequestParam(value = "age")int age,@RequestParam(value = "pathologie")String pathologie,@RequestParam(value = "sexe")char gender) throws NoSuchAlgorithmException {
+        boolean value = canSub(nickname, password,age,gender,pathologie);
         if(!value){
             System.out.println("account creation failed");
             return "inscription";
         }
         System.out.println("account creation successed");
-        return "activityPage";
+        return "redirect:/activities";
     }
     @GetMapping(path = "/inscription")
     public String inscription(){
         return "inscription";
     }
 
-    private boolean canSub(String nickname, String password) throws NoSuchAlgorithmException {
+    private boolean canSub(String nickname, String password, int age, char gender, String pathologir) throws NoSuchAlgorithmException {
         password = Hasher.hashing(password);
         if (userRepository.findByNickname(nickname).size() > 0){
             System.out.println("Name already use");
             return false;
         }
-        UsersEntity users = new UsersEntity(nickname, password);
+        UsersEntity users = new UsersEntity(nickname, password,age,gender,pathologir);
         userRepository.save(users);
         setUser(nickname);
         return true;
@@ -59,7 +59,7 @@ public class UserController {
             return "connection";
         }
         setUser(nickname);
-        return "activityPage";
+        return "redirect:/activities";
     }
 
     private boolean canConnect(String nickname, String password) throws NoSuchAlgorithmException {

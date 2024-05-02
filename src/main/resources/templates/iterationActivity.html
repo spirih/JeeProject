@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 th:text="${iteration.getId()}"></h1>
+    <h2 th:text="${group.getName()}"></h2>
+    <h2 th:text="${activity.getName()}"></h2>
+    <br>
+    <h4>Note:</h4>
+    <br>
+    <form method="get" action="/noteActivity">
+        <input hidden name="idIterate" th:value="${iteration.getId()}">
+        <select name = "note">
+            <option value = ""></option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <input type="submit">
+    </form>
+
+
+</body>
+</html>

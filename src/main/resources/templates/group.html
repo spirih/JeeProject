@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Group</title>
+</head>
+<body>
+<h1 th:text="${group.getName()}"></h1>
+<table>
+  <tr th:each=" activity :${activities}" >
+
+      <td th:text="${activity.getName()}">
+          <a th:href="@{'/iterationActivity?id=' + ${activity.getGroupAndActionID()}}"></a>
+      </td>
+      <td th:text="${activity.getNote()}">
+          <a th:href="@{'/iterationActivity?id=' + ${activity.getGroupAndActionID()}}"></a>
+      </td>
+      <td>
+          <a th:href="@{'/iterationActivity?id=' + ${activity.getGroupAndActionID()}}">
+            <button th:action="@{'/iterationActivity?id=' + ${activity.getGroupAndActionID()}}">Aller voir</button>
+          </a>
+      </td>
+  </tr>
+</table>
+
+</body>
+</html>
