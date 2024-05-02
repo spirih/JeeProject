@@ -1,5 +1,6 @@
 <!doctype html>
-<html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <title>Activité</title>
@@ -12,66 +13,54 @@
 <body>
 <!--Début page de recherche d'activité-->
 <h1 id = "title">Recherche d'activité</h1>
-<form action="" method="post">
-    <textarea id="activitySearch" name="activitySearch"></textarea>
 
-    <label for="dec">décroissant</label>
-    <input type="radio" name="dir" id="dec" value="dec">
-    <label for="asc">croissant</label>
-    <input type="radio" name="dir" id="asc" value="asc" checked>
-
-    <label for="description">description</label>
-    <input type="radio" name="filtre" id="description" value="description" >
-    <label for="nom">nom</label>
-    <input type="radio" name="filtre" id="nom" value="nom" >
-    <label for="pathologie">pathologie</label>
-    <input type="radio" name="filtre" id="pathologie" value="pathologie" >
-    <button type="submit">search</button>
-</form>
 
 <div id="result" name="result">
-    <h2 id="activityTitle">Titre</h2>
-    <p id = "descruption">Description</p>
-    <p id = "discipline">Discipline</p>
-    <p id = "pathologies">Pathologies</p>
-    <p id = "adress">Adresse</p>
-
-    (zone d'arriver pouir les résultat de la recherche)
-
+    <h2 id="activityTitle" th:text="${activity.getName()}">Titre</h2>
+    <p id = "descruption" th:text="${activity.getDescription()}">Description</p>
+    <p id = "discipline" th:text="${activity.getDiscipline()}">Discipline</p>
+    <p id = "pathologies" th:text="${activity.getPathologie()}">Pathologies</p>
+    <p id = "adress" th:text="${activity.getAddress()}">Adresse</p>
 </div>
 <!--Fin age de recherche d'activité-->
 
-
+<br>
+<hr>
 <div id="map" style=""></div>
 <script src="map.js" >
 </script>
 <h3>Ajouter au groupe</h3>
-<br>
 
 <form action = "/add" method="get">
-    <select name="choice" id = "choice">
+    <select name="choice" id = "choiceGroup" >
         <option value="first">First Value</option>
+        <option
+                th:each="group : ${groups}"
+                th:text="${group.name}"
+                th:value="${group.id}"
+
+        >
     </select>
     <br>
-    <input type = "submit" id = "submit" text = "Ajouter au groupe" value =  "Submit"/>
+    <input type = "submit" id = "submitGroup" text = "Ajouter au groupe" value =  "Submit"/>
 </form>
 <br>
 <h3>Créer un groupe</h3>
-<form action = "/createGroup" method="get">
-    <label for="nameGroup">Nom du groupe:</label>
-    <input type = "text" id = "nameGroup" value = "nameGroup">
-    <input type = "submit" id = "submit" text = "Créer un groupe" value =  "Submit"/>
+<h2 th:text="${activity.getId()}"></h2>
+<!-- th:action="@{'/createGroup?id=' + ${activity.getId()}}"-->
+
+<form action = "/createGroup" method="get" name="submitcreategroupe">
+    <label for="nomGroup">Nom du groupe:</label>
+    <input type="text" name="nomGroup" id="nomGroup" required minlength ="1" autofocus/>
+    <br>
+    <input type="hidden" name="id" th:value="${activity.getId()}"/>
+
+    <input type = "submit" id = "submit" text = "confirmer" value =  "Submit"/>
 </form>
-<h3>Noter</h3>
-<select name="choice" id = "choice">
-    <option value="-1"></option>
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-</select>
+
+
+
+
 
 </body>
 </html>

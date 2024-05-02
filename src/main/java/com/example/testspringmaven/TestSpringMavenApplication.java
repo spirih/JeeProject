@@ -30,8 +30,6 @@ public class TestSpringMavenApplication {
     @GetMapping("/hello")
     public String sayHello(@RequestParam(value = "myName", defaultValue = "World") String name) throws NoSuchAlgorithmException {
         String password = Hasher.hashing("1234");
-        UsersEntity users = new UsersEntity("admin2",password);
-        userRepository.save(users);
         return String.format("Hello %s!", name);
     }
 }

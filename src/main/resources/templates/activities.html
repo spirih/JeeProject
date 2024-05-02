@@ -3,25 +3,63 @@
       xmlns:th="http://www.thymeleaf.org"
 >
 <head>
+
+    <link rel="stylesheet" href="map.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <meta charset="UTF-8">
     <title>Activities</title>
+    <link rel="stylesheet" href="activity.css">
+
 </head>
 <body>
 <h1>Liste des articles</h1>
 <br>
 <h2>Nombre d'activité: </h2>
-<h3 th:text="${user.getNickname()}"></h3>
 <h2 th:text="${activities.size()}"></h2>
-<form method="get" action="/activities">
-    <label for="name"></label>
-    <input type="text" name="name" id = "name">
-    <input type="submit">
+
+<form action="/activities" method="get">
+    <input type="text" id="activitySearch" name="activitySearch"></input>
+
+
+    <br>
+    <label for="description">description</label>
+    <input type="radio" name="filtre" id="description" value="description" >
+    <label for="name">nom</label>
+    <input type="radio" name="filtre" id="name" value="name" >
+    <label for="pathologie">pathologie</label>
+    <input type="radio" name="filtre" id="pathologie" value="pathologie" >
+    <br>
+    <label for="dec">décroissant</label>
+    <input type="radio" name="dir" id="dec" value="dec">
+    <label for="asc">croissant</label>
+    <input type="radio" name="dir" id="asc" value="asc" checked>
+    <br>
+    <button type="submit">search</button>
 </form>
+
 <table>
     <tr th:each="ac : ${activities}">
         <th th:text="${ac.getName()}"></th>
         <th>Ok</th>
     </tr>
 </table>
+<div th:each="ac : ${activities}">
+    <div class = "activity">
+        <a th:href="@{'/activity?id=' + ${ac.getId()}}" >
+            <p id = "title" th:text="${ac.getName()}"></p>
+            <p id = "descriptionShow" th:text="${ac.getDescription()}">Description</p>
+            <p id = "discipline" th:text="${ac.getDiscipline()}">Discipline</p>
+            <p id = "pathologies" th:text="${ac.getPathologie()}">Pathologies</p>
+            <p id = "address" th:text="${ac.getAddress()}">Adresse</p>
+            <div id="map" style=""></div>
+            <script src="map.js" >
+            </script>
+        </a>
+    </div>
+    <hr>
+    <br>
+</div>
 </body>
 </html>

@@ -32,14 +32,15 @@ public class ActivityController {
     private ActivitiesRepository activityRepository;
 
 
-
+    @Autowired
+    GroupRepository groupRepository;
     @Autowired
     private GroupAndActivitiesRepository groupAndActivityRepository;
 
 
 
     @GetMapping(path = "/activities")
-    public void activities(Model model2,@RequestParam(name="name", defaultValue="") String name){
+    public void activities(Model model2,@RequestParam(name="activitySearch", defaultValue="") String name){
         ModelAndView model = new ModelAndView("/activities");
         Pageable pageable = PageRequest.of(0,10);
         Page<ActivitiesEntity> list;
@@ -103,9 +104,12 @@ public class ActivityController {
     }
 
     @GetMapping(path = "/activity")
-    public void activities(Model model, @RequestParam(name="id") int id ){
+    public String activities(Model model, @RequestParam(name="id") int id ){
         ActivitiesEntity activities = activityRepository.findById(id);
         model.addAttribute("activity",activities);
+        model.addAttribute("groups",groupRepository.findAll());
+
+        return "activityPage";
     }
 
 
