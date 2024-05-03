@@ -6,6 +6,7 @@ import com.example.testspringmaven.utilitary.Common;
 import com.example.testspringmaven.utilitary.Hasher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -76,6 +77,12 @@ public class UserController {
         Common.setUsers(null);
         return "connection";
        // userRepository.deconnect();
+    }
+    @GetMapping(path = "/user")
+    public String user(Model model){
+        model.addAttribute("user",Common.getUsers());
+        return "user";
+        // userRepository.deconnect();
     }
     private void setUser(String nickname){
         UsersEntity usersEntity = userRepository.getUsersEntityByNickname(nickname);

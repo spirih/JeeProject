@@ -22,6 +22,10 @@ public interface ActivitiesRepository extends JpaRepository<ActivitiesEntity, Lo
     Page<ActivitiesEntity> findAllByNamePageable(String name, Pageable pageable);
     @Query("select p from ActivitiesEntity p where p.name like %:name%")
     Page<ActivitiesEntity> findAllLikeNamePageable(String name, Pageable pageable);
+    @Query("select p from ActivitiesEntity p where p.description like %:name%")
+    Page<ActivitiesEntity> findAllLikeDescriptionPageable(String name, Pageable pageable);
+    @Query("select p from ActivitiesEntity p where p.pathologie like %:name%")
+    Page<ActivitiesEntity> findAllLikePathologiePageable(String name, Pageable pageable);
 
     ActivitiesEntity findById(int id);
 
