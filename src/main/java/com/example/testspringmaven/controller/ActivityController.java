@@ -17,11 +17,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -117,12 +115,13 @@ public class ActivityController {
         }
     }
     @GetMapping(path = "/noteActivity")
-    public void noteActivity(Model model, @RequestParam(name="idIterate", defaultValue="-1") int id,@RequestParam(name="note", defaultValue="-1") int value ){
-
+    public String noteActivity(RedirectAttributes rattrs,Model model, @RequestParam(name="idIterate", defaultValue="-1") int id,@RequestParam(name="note", defaultValue="-1") int value ){
         if(value < 6 && value > -1 && id > -1){
-            model.addAttribute("id",id);
             model.addAttribute("note",value);
+            groupAndActivityRepository.setNote(value,id);
         }
+        rattrs.addAttribute("id",id);
+        return "redirect:/iterationActivity";
     }
 
 
@@ -153,12 +152,16 @@ public class ActivityController {
         Activity activity = new Activity();
         activity.setId(entity.getId());
         activity.setName(entity.getName());
-        activity.setNote(entity.getNote());
+        activity.setNote(whole.getNote());
         activity.setGroupAndActionID(whole.getId());
         return activity;
     }
     @GetMapping(path = "/iterationActivity")
-    public String iterate(Model model, @RequestParam(name="id") int idGroupAction){
+    public String iterate(Model model, @RequestParam(name="id", defaultValue="-1") int idGroupAction,
+                          @ModelAttribute("id")int idModel){
+        if(idGroupAction < 0){
+            idGroupAction = idModel;
+        }
         GroupandactivitiesEntity graa = groupAndActivityRepository.getGroupandactivitiesEntityById(idGroupAction);
         GroupactivitiesEntity gra = groupRepository.findById(graa.getIdGroup());
         ActivitiesEntity activity = activityRepository.findById(graa.getIdActivity());

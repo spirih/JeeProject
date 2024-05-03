@@ -42,10 +42,21 @@ public class GroupController {
         model.addAttribute("group",grae);
         ArrayList<GroupandactivitiesEntity> graae = gral.getGroupandactivitiesEntitiesByIdGroup(id);
         ArrayList<Activity> activities = new ArrayList<>();
+        float average = 0;
+        int count = 0;
         for(GroupandactivitiesEntity g : graae){
+            if(g.getNote() > 0 ){
+                count++;
+                average += g.getNote();
+            }
             activities.add(generateActivity(g));
         }
+        if(count > 0){
+            average = average/count;
+        }
+        model.addAttribute("average",average);
         model.addAttribute("activities",activities);
+
 
         return "group";
     }
@@ -55,7 +66,7 @@ public class GroupController {
         Activity activity = new Activity();
         activity.setId(entity.getId());
         activity.setName(entity.getName());
-        activity.setNote(entity.getNote());
+        activity.setNote(whole.getNote());
         activity.setGroupAndActionID(whole.getId());
         return activity;
     }
