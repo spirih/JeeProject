@@ -6,22 +6,36 @@
     <title>Title</title>
 </head>
 <body>
+    <a th:href="@{'/group?id=' + ${group.getId()}}">
+        <p>Retour</p>
+    </a>
     <h1 th:text="${iteration.getId()}"></h1>
     <h2 th:text="${group.getName()}"></h2>
     <h2 th:text="${activity.getName()}"></h2>
+    <p th:text="${activity.getDescription()}"></p>
     <br>
     <h4>Note:</h4>
     <br>
     <form method="get" action="/noteActivity">
         <input hidden name="idIterate" th:value="${iteration.getId()}">
         <select name = "note">
-            <option value = ""></option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+            <option value = ""
+            ></option>
+            <option value="1"
+                    th:selected="${iteration.getNote()} == 1 ? true : false"
+            >1</option>
+            <option value="2"
+                    th:selected="${iteration.getNote()} == 2 ? true : false"
+            >2</option>
+            <option value="3"
+                    th:selected="${iteration.getNote()} == 3 ? true : false"
+            >3</option>
+            <option value="4"
+                    th:selected="${iteration.getNote()} == 4 ? true : false"
+            >4</option>
+            <option value="5"
+                    th:selected="${iteration.getNote()} == 5 ? true : false"
+            >5</option>
         </select>
         <input type="submit">
     </form>
