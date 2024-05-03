@@ -1,9 +1,6 @@
 package com.example.testspringmaven.persistant;
 
-import com.example.testspringmaven.repository.ActivitiesRepository;
 import jakarta.persistence.*;
-
-import java.util.ArrayList;
 
 @Entity
 @Table(name = "activities", schema = "payaya")

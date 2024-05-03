@@ -5,16 +5,15 @@ package com.example.testspringmaven.utilitary;
 
 import com.example.testspringmaven.object.Activity;
 import com.example.testspringmaven.persistant.ActivitiesEntity;
-import com.example.testspringmaven.repository.ActivitiesRepository;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import org.springframework.data.domain.Pageable;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
+
 import java.util.ArrayList;
 
 public class ActivityReader{
@@ -26,11 +25,10 @@ public class ActivityReader{
         for(int i = 0; i < array.length(); i++){
             JSONObject jso = array.getJSONObject(i);
             list.add(activityAnalyzer(jso));
-
         }
         return list;
-
     }
+
     static ActivitiesEntity activityAnalyzer(JSONObject jso){
         Activity act = new Activity();
         act.setName(jso.getString("Name"));

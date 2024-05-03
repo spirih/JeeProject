@@ -1,8 +1,8 @@
 package com.example.testspringmaven.repository;
 
 import com.example.testspringmaven.persistant.GroupactivitiesEntity;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.ArrayList;

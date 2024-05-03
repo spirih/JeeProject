@@ -4,12 +4,12 @@ import com.example.testspringmaven.persistant.UsersEntity;
 import com.example.testspringmaven.repository.UserRepository;
 import com.example.testspringmaven.utilitary.Common;
 import com.example.testspringmaven.utilitary.Hasher;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
