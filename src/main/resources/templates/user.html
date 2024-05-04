@@ -25,10 +25,32 @@
 </header>
 
 
-    <p th:text="${user.getNickname()}"></p>
-    <p th:text="${user.getAge()}"></p>
-    <p th:text="${user.getPathologie()}"></p>
-    <p th:text="${user.getGender()}"></p>
+        <div  class="alligner">
+            <div>
+                Surnom:
+            </div>
+            <div th:text="${user.getNickname()}" class=""></div>
+        </div>
+        <div class="alligner">
+            <div>
+                Age:
+            </div>
+            <div th:text="${user.getAge()}"></div>
+        </div>
+        <div class="alligner">
+            <div>
+                Pathologies:
+            </div>
+            <div th:text="${user.getPathologie()}"></div>
+        </div>
+        <div class="alligner">
+            <div>
+                Genre:
+            </div>
+            <div th:text="${user.getGender()}"></div>
+        </div>
+
+
 
 </body>
 </html>
