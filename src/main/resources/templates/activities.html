@@ -33,13 +33,13 @@
 
 
 
-<h1>Liste des articles</h1>
+<h1>Liste des activités</h1>
 <br>
 <h3>Pages:</h3>
 <div>
     <a  th:if="${nbPage} > 0" th:text="${nbPage} " th:href="@{'/activities?filter=' + ${filter}+'&dir='+${dir}+'&page='+${nbPage - 1} + '&pageSize='+${sizePage}}"></a>
     <a th:text="${nbPage} +1" ></a>
-    <a th:text="${nbPage} + 2 " th:href="@{'/activities?filter=' + ${filter}+'&dir='+${dir}+'&page='+${nbPage+1} + '&pageSize='+${sizePage}}"></a>
+    <a th:text="${nbPage} + 2 " th:href="@{'/activities?filtre=' + ${filter}+'&dir='+${dir}+'&page='+${nbPage+1} + '&pageSize='+${sizePage}}"></a>
 
 </div>
 
@@ -60,8 +60,10 @@
     Option de filtre:
     <label for="description">description</label>
     <input type="radio" name="filtre" id="description" value="description" >
+    <br>
     <label for="name">nom</label>
     <input type="radio" name="filtre" id="name" value="name" >
+    <br>
     <label for="pathologie">pathologie</label>
     <input type="radio" name="filtre" id="pathologie" value="pathologie" >
     <br>

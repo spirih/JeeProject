@@ -37,7 +37,7 @@ public class ActivityController {
 
 
     @GetMapping(path = "/activities")
-    public void activities(Model model2,@RequestParam(name="page", defaultValue="0") int page,@RequestParam(name="pageSize", defaultValue="10") int pageSize,@RequestParam(name="activitySearch", defaultValue="") String name,@RequestParam(name="filter", defaultValue="") String filter,@RequestParam(name="dir", defaultValue="") String dir){
+    public void activities(Model model2,@RequestParam(name="page", defaultValue="0") int page,@RequestParam(name="pageSize", defaultValue="10") int pageSize,@RequestParam(name="activitySearch", defaultValue="") String name,@RequestParam(name="filtre", defaultValue="") String filter,@RequestParam(name="dir", defaultValue="") String dir){
         if(page < 0){page = 0;}
         if(pageSize < 0){pageSize = 0;}
         Pageable pageable = PageRequest.of(page,pageSize);
@@ -45,7 +45,7 @@ public class ActivityController {
         model2.addAttribute("dir",dir);
         if(dir.equals("asc")){
             pageable = PageRequest.of(page,pageSize, Sort.by("name").ascending());
-        }else if(dir.equals("dsc")){
+        }else if(dir.equals("dec")){
             pageable = PageRequest.of(page,pageSize, Sort.by("name").descending());
         }
         Page<ActivitiesEntity> list;
@@ -55,20 +55,13 @@ public class ActivityController {
 
         }else{
             if(!filter.equals("")){
-                switch (filter){
-                    case "description":
-                        list = activityRepository.findAllLikeDescriptionPageable(name,pageable);
-                        break;
-                    case "name":
-                        list = activityRepository.findAllLikeNamePageable(name,pageable);
-                        break;
-                    case "pathologie":
-                        list = activityRepository.findAllLikePathologiePageable(name,pageable);
-                        break;
-                    default:
-                        list = activityRepository.findAll(pageable);
-                        break;
-                }
+                list = switch (filter) {
+                    case "description" -> activityRepository.findAllLikeDescriptionPageable(name, pageable);
+                    case "name" -> activityRepository.findAllLikeNamePageable(name, pageable);
+                    case "pathologie" -> activityRepository.findAllLikePathologiePageable(name, pageable);
+                    default -> activityRepository.findAll(pageable);
+                };
+
 
             }else{
                 list = activityRepository.findAll(pageable);
@@ -81,6 +74,8 @@ public class ActivityController {
 
          System.out.println("hu");
          System.out.println(list.getNumberOfElements());
+         System.out.println(name);
+
          System.out.println("hi");
          System.out.println(Common.getUsers().getNickname());
          model2.addAttribute("activities",list.getContent());
