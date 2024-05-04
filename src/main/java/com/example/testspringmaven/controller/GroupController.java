@@ -29,7 +29,7 @@ public class GroupController {
 
     @GetMapping(path = "/groups")
     public String groups(Model model){
-        ArrayList<GroupactivitiesEntity> list= groupRepository.getAll();
+        ArrayList<GroupactivitiesEntity> list= groupRepository.getGroupactivitiesEntitiesByUser(Common.getUsers().getNickname());
         model.addAttribute("groups2",list);
         return "groups";
     }
@@ -86,5 +86,18 @@ public class GroupController {
         }
         return "redirect:/activity?id="+id;
     }
+    @GetMapping(path = "/createGroupFromGroup")
+    public String create(Model model,@RequestParam(name="nomGroup") String group){
+        if(group != null){
+            if(!group.isEmpty()){
+                //GroupactivitiesEntity gr = groupRepository.createGroupe(group);
+                GroupactivitiesEntity g = new GroupactivitiesEntity(Common.getUsers().getNickname(),group);
+                groupRepository.save(g);
+                model.addAttribute("groups",groupRepository.findAll());
+            }
+        }
+        return "redirect:/groups";
+    }
+
 
 }

@@ -12,6 +12,7 @@ header{
     flex-direction: row;
     justify-content: flex-end;
     margin-bottom: 1em;
+    background-color: darkgrey;
 }
 
 .headerConn {
@@ -26,9 +27,27 @@ header{
     padding-bottom: 0.5em;
     padding-top: 0.5em;
     font-size: 1.2rem;
+    background-color: white;;
 }
 
 h1{
     font-size: x-large;
     color: forestgreen;
+}
+
+table {
+    border: 1px solid;
+}
+th {
+    border: 1px solid;
+}
+td {
+    border: 1px solid;
+}
+.alligner {
+    text-align:center
+}
+.alligner > div {
+    vertical-align:top;
+    display:inline-block;
 }

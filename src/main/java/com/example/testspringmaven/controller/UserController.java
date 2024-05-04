@@ -21,21 +21,24 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping(path = "/sub")
-    public String subscribe(@RequestParam(value = "nickname")String nickname, @RequestParam(value = "password")String password ,@RequestParam(value = "age")int age,@RequestParam(value = "pathologie")String pathologie,@RequestParam(value = "sexe")char gender) throws NoSuchAlgorithmException {
-        boolean value = canSub(nickname, password,age,gender,pathologie);
-        if(!value){
-            System.out.println("account creation failed");
-            return "inscription";
+    public String subscribe(@RequestParam(value = "nickname")String nickname, @RequestParam(value = "password")String password, @RequestParam(value = "password2")String password2 ,@RequestParam(value = "age")int age,@RequestParam(value = "pathologie")String pathologie,@RequestParam(value = "sexe")char gender) throws NoSuchAlgorithmException {
+        boolean value = canSub(nickname, password,age,gender,pathologie,password2);
+        if(value){
+            System.out.println("account creation succesfull");
+            return "redirect:/activities";
         }
-        System.out.println("account creation successed");
-        return "redirect:/activities";
+        System.out.println("account creation failed");
+        return "inscription";
     }
     @GetMapping(path = "/inscription")
     public String inscription(){
         return "inscription";
     }
 
-    private boolean canSub(String nickname, String password, int age, char gender, String pathologir) throws NoSuchAlgorithmException {
+    private boolean canSub(String nickname, String password, int age, char gender, String pathologir, String password2) throws NoSuchAlgorithmException {
+        if(!password.equals(password2)){
+            return false;
+        }
         password = Hasher.hashing(password);
         if (userRepository.findByNickname(nickname).size() > 0){
             System.out.println("Name already use");

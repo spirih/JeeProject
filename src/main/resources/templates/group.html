@@ -3,9 +3,27 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+
     <title>Group</title>
 </head>
 <body>
+
+<header>
+    <a href="/activities" class="headerConn">
+        activities
+    </a>
+    <a href="/groups" class="headerConn">
+        groups
+    </a>
+    <a href="/user" class="headerConn">
+        profil
+    </a>
+    <a href="/deconnection" class="headerConn">
+        deconnection
+    </a>
+</header>
+
 <h1 th:text="${group.getName()}"></h1>
 <h2 th:text="${average}"></h2>
 <table>

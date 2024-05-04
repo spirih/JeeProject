@@ -4,12 +4,53 @@
 ><head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+
 </head>
 <body>
-    <p th:text="${user.getNickname()}"></p>
-    <p th:text="${user.getAge()}"></p>
-    <p th:text="${user.getPathologie()}"></p>
-    <p th:text="${user.getGender()}"></p>
+
+<header>
+    <a href="/activities" class="headerConn">
+        activities
+    </a>
+    <a href="/groups" class="headerConn">
+        groups
+    </a>
+    <a href="/user" class="headerConn">
+        profil
+    </a>
+    <a href="/deconnection" class="headerConn">
+        deconnection
+    </a>
+</header>
+
+
+        <div  class="alligner">
+            <div>
+                Surnom:
+            </div>
+            <div th:text="${user.getNickname()}" class=""></div>
+        </div>
+        <div class="alligner">
+            <div>
+                Age:
+            </div>
+            <div th:text="${user.getAge()}"></div>
+        </div>
+        <div class="alligner">
+            <div>
+                Pathologies:
+            </div>
+            <div th:text="${user.getPathologie()}"></div>
+        </div>
+        <div class="alligner">
+            <div>
+                Genre:
+            </div>
+            <div th:text="${user.getGender()}"></div>
+        </div>
+
+
 
 </body>
 </html>
