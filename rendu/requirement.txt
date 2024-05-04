@@ -1,0 +1,11 @@
+besoin de l'application
+Java 19
+Maven
+org.json
+un serveur de base de donnée distant
+jakarta
+tomcat
+hibernate
+boot-spring
+spring-data-jpa-3.2.5
+thymeleaf 3.2.5
