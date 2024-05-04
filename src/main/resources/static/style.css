@@ -12,6 +12,7 @@ header{
     flex-direction: row;
     justify-content: flex-end;
     margin-bottom: 1em;
+    background-color: darkgrey;
 }
 
 .headerConn {
@@ -26,6 +27,7 @@ header{
     padding-bottom: 0.5em;
     padding-top: 0.5em;
     font-size: 1.2rem;
+    background-color: white;;
 }
 
 h1{
@@ -33,19 +35,12 @@ h1{
     color: forestgreen;
 }
 
-#map {
-    height: 180px;
-    width: 600px
+table {
+    border: 1px solid;
 }
-
-.map {
-    height: 180px;
-    width: 600px
+th {
+    border: 1px solid;
 }
-
-.leaflet-container {
-    height: 400px;
-    width: 600px;
-    max-width: 100%;
-    max-height: 100%;
+td {
+    border: 1px solid;
 }

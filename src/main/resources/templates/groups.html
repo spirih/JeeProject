@@ -8,6 +8,22 @@
     <title>Title</title>
 </head>
 <body>
+
+<header>
+    <a href="/activities" class="headerConn">
+        activities
+    </a>
+    <a href="/groups" class="headerConn">
+        groups
+    </a>
+    <a href="/user" class="headerConn">
+        profil
+    </a>
+    <a href="/deconnection" class="headerConn">
+        deconnection
+    </a>
+</header>
+
     <table>
         <tr th:each="group : ${groups2}">
             <th th:text="${group.getId()}"></th>
@@ -19,5 +35,13 @@
             </th>
         </tr>
     </table>
+<h3>Créer un groupe</h3>
+<form action = "/createGroupFromGroup" method="get" name="submitcreategroupe">
+    <label for="nomGroup">Nom du groupe:</label>
+    <input type="text" name="nomGroup" id="nomGroup" required minlength ="1" autofocus/>
+    <br>
+    <input type = "submit" id = "submit" text = "confirmer" value =  "Submit"/>
+</form>
+
 </body>
 </html>

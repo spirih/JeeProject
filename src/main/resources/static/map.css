@@ -1,2 +1,17 @@
+#map {
+    height: 180px;
+    width: 600px
+}
 
+.map {
+    height: 180px;
+    width: 600px
+}
+
+.leaflet-container {
+    height: 400px;
+    width: 600px;
+    max-width: 100%;
+    max-height: 100%;
+}
 	

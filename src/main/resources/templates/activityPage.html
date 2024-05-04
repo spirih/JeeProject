@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <title>Activité</title>
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/map.css}">
     <link rel="stylesheet" type="text/js" th:href="@{/map.js}">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
@@ -12,11 +13,17 @@
 </head>
 <body>
 <header>
-    <a href="/activities">
+    <a href="/activities" class="headerConn">
         activities
     </a>
-    <a href="/groups">
+    <a href="/groups" class="headerConn">
         groups
+    </a>
+    <a href="/user" class="headerConn">
+        profil
+    </a>
+    <a href="/deconnection" class="headerConn">
+        deconnection
     </a>
 </header>
 <!--Début page de recherche d'activité-->

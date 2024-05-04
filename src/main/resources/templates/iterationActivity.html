@@ -8,6 +8,22 @@
     <title>Title</title>
 </head>
 <body>
+
+<header>
+    <a href="/activities" class="headerConn">
+        activities
+    </a>
+    <a href="/groups" class="headerConn">
+        groups
+    </a>
+    <a href="/user" class="headerConn">
+        profil
+    </a>
+    <a href="/deconnection" class="headerConn">
+        deconnection
+    </a>
+</header>
+
     <a th:href="@{'/group?id=' + ${group.getId()}}">
         <p>Retour</p>
     </a>
