@@ -29,7 +29,7 @@ public class GroupController {
 
     @GetMapping(path = "/groups")
     public String groups(Model model){
-        ArrayList<GroupactivitiesEntity> list= groupRepository.getAll();
+        ArrayList<GroupactivitiesEntity> list= groupRepository.getGroupactivitiesEntitiesByUser(Common.getUsers().getNickname());
         model.addAttribute("groups2",list);
         return "groups";
     }
