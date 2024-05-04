@@ -1,7 +1,6 @@
 package com.example.testspringmaven.object;
 
 import com.example.testspringmaven.persistant.ActivitiesEntity;
-import com.example.testspringmaven.repository.ActivitiesRepository;
 
 public class Activity {
     private String name;

@@ -3,6 +3,7 @@ package com.example.testspringmaven.controller;
 import com.example.testspringmaven.persistant.ActivitiesEntity;
 import com.example.testspringmaven.repository.ActivitiesRepository;
 import com.example.testspringmaven.utilitary.ActivityReader;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

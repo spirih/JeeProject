@@ -1,7 +1,7 @@
 package com.example.testspringmaven.repository;
 
 import com.example.testspringmaven.persistant.ActivitiesEntity;
-;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
