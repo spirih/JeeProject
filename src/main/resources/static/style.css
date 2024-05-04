@@ -44,3 +44,10 @@ th {
 td {
     border: 1px solid;
 }
+.alligner {
+    text-align:center
+}
+.alligner > div {
+    vertical-align:top;
+    display:inline-block;
+}

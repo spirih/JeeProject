@@ -23,12 +23,12 @@ public class UserController {
     @PostMapping(path = "/sub")
     public String subscribe(@RequestParam(value = "nickname")String nickname, @RequestParam(value = "password")String password, @RequestParam(value = "password2")String password2 ,@RequestParam(value = "age")int age,@RequestParam(value = "pathologie")String pathologie,@RequestParam(value = "sexe")char gender) throws NoSuchAlgorithmException {
         boolean value = canSub(nickname, password,age,gender,pathologie,password2);
-        if(!value){
-            System.out.println("account creation failed");
-            return "inscription";
+        if(value){
+            System.out.println("account creation succesfull");
+            return "redirect:/activities";
         }
-        System.out.println("account creation successed");
-        return "redirect:/activities";
+        System.out.println("account creation failed");
+        return "inscription";
     }
     @GetMapping(path = "/inscription")
     public String inscription(){
