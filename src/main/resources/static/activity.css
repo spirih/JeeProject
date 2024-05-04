@@ -11,3 +11,4 @@
     border-color: black;
     border-style: dotted;
 }
+a { color: inherit; }

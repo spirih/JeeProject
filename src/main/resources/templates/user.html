@@ -4,8 +4,27 @@
 ><head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+
 </head>
 <body>
+
+<header>
+    <a href="/activities" class="headerConn">
+        activities
+    </a>
+    <a href="/groups" class="headerConn">
+        groups
+    </a>
+    <a href="/user" class="headerConn">
+        profil
+    </a>
+    <a href="/deconnection" class="headerConn">
+        deconnection
+    </a>
+</header>
+
+
     <p th:text="${user.getNickname()}"></p>
     <p th:text="${user.getAge()}"></p>
     <p th:text="${user.getPathologie()}"></p>
