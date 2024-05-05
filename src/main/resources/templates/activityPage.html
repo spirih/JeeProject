@@ -39,6 +39,7 @@
     <p id = "lat" th:text="${activity.getLat()}" th:name="lat"></p>
     <p id = "lng" th:text="${activity.getLng()}" th:name="lng"></p>
     <p th:text="${activity.getId()}"></p>
+    <a th:href="${activity.getUrl()}"><button>Voir sur le site</button></a>
 
 </div>
 <!--Fin age de recherche d'activité-->

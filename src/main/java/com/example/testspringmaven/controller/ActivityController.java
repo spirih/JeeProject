@@ -145,6 +145,7 @@ public class ActivityController {
         activity.setName(entity.getName());
         activity.setNote(whole.getNote());
         activity.setGroupAndActionID(whole.getId());
+        activity.setNote(generateNote(entity.getId()));
         return activity;
     }
     @GetMapping(path = "/iterationActivity")
@@ -161,6 +162,21 @@ public class ActivityController {
         model.addAttribute("iteration",graa);
 
         return "iterationActivity";
+    }
+    public float generateNote(int id){
+        float sum = 0;
+        int count = 0;
+        ArrayList<GroupandactivitiesEntity> gr = groupAndActivityRepository.getGroupandactivitiesEntitiesByIdActivity(id);
+        for(GroupandactivitiesEntity gaa : gr){
+            if(gaa.getNote() > 0){
+                count++;
+                sum += gaa.getNote();
+            }
+        }
+        if(count > 0){
+            sum = sum / count;
+        }
+        return sum;
     }
 
 
